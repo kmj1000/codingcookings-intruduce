@@ -1,0 +1,92 @@
+<!-- 부트스트랩 -->
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+  crossorigin="anonymous"
+></script>
+<!-- 제이쿼리 -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<!-- 댓글 css, js(번들러 없이 쌩 html에서 import 쓰려면 어쩔 수 없이 모듈에 다 넣어야함 ㅠㅠ..) -->
+<link rel="stylesheet" type="text/css" href="./comment.css" />
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import {
+    getDatabase,
+    ref,
+    set,
+    push,
+  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js";
+
+  // db 설정
+  const firebaseConfig = {
+    apiKey: "AIzaSyAm6Ag7d4OkES-k8QRQVhtqj9p9dOUHo7I",
+    authDomain: "sparta-33d77.firebaseapp.com",
+    projectId: "sparta-33d77",
+    storageBucket: "sparta-33d77.appspot.com",
+    messagingSenderId: "29684425915",
+    appId: "1:29684425915:web:d1fe87fa1101d7f973f59e",
+    databaseURL:
+      "https://sparta-33d77-default-rtdb.asia-southeast1.firebasedatabase.app",
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // 댓글 등록
+  async function submitComment() {
+    const commentAuthor = $("#comment-name").val();
+    const content = $("#comment-content").val();
+    const username = $("#username").val();
+    const data = {
+      username: "테스트유저",
+      commentAuthor: commentAuthor,
+      content: content,
+    };
+    const commentRef = ref(db, "comments");
+    const newCommentRef = push(commentRef);
+    try {
+      await set(newCommentRef, data);
+      console.log("comment added");
+    } catch (error) {
+      console.error("comment add error" + error);
+    }
+  }
+  $(".comment-submit-button").on("click", submitComment);
+</script>
+
+<!-- 댓글 폼 -->
+<div class="container text-center comment-form">
+  <div class="row">
+    <div class="col-2">
+      <input
+        class="form-control comment-name-input"
+        type="text"
+        placeholder="이름"
+        id="comment-name"
+        aria-label="default input example"
+      />
+    </div>
+    <div class="col-8">
+      <textarea
+        class="form-control comment-content-input"
+        placeholder="내용을 입력해주세요!"
+        id="comment-content"
+      ></textarea>
+    </div>
+
+    <div class="col-2">
+      <button
+        type="button"
+        class="btn btn-primary comment-submit-button"
+        form="comment-form"
+      >
+        등록
+      </button>
+    </div>
+  </div>
+</div>
