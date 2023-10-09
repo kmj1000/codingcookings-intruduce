@@ -79,11 +79,10 @@
         }
 
         .intro-body {
-            background-color: green;
             width: 1200px;
             margin: 10px auto 10px auto;       
              /* intro-body 태그 하위의 요소들 이미지, 텍스트div, 버튼 가운데 정렬 */
-             display: flex;
+            display: flex;
             align-items:center;  
             flex-direction: row;
         }
@@ -94,14 +93,13 @@
             
         }
         .join-btn {
-            background-color: green;
             text-align: center;
         }
 
         .team-cards {
-        width: 600px;
+        width: 900px;
         margin: 20px auto 20px auto;
-      }
+        }
 
       .card {
         border-radius: 15px;
@@ -153,7 +151,7 @@
             });
           });
       });
-      
+
       function name(params) {
             let a = [];
             $("#q1").append(temp_html);
@@ -178,7 +176,7 @@
         <button type="button" class="btn btn-primary btn-lg">쉐프로 참여하기</button> 
     </div>
      
-    <div class="mypostbox">
+    <!-- <div class="mypostbox">
         <h4>쉐프님 어서오세요!</h4>
 
         <div class="form-floating mb-3">
@@ -215,10 +213,10 @@
             <button type="button" class="btn btn-primary">참여하기</button>
             <button type="button" class="btn btn-outline-primary">나가기</button>
         </div>
-    </div>
+    </div> -->
 
     <div class="team-cards">
-        <div id="member-card" class="row row-cols-1 row-cols-md-3 g-4">
+        <div id="member-card" class="row row-cols-1 row-cols-md-4 g-4">
      <!--     <div class="col">
             <div class="card h-100">
               <img
