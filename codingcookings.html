@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -134,11 +133,7 @@
               let imageUrl = members[key].imageUrl;
               teamListHtml = ` <div class="col">
             <div class="card h-100 shadow-lg bg-body">
-              <img
-                src="${imageUrl}"
-                class="card-img-top border border-3 border-dark"
-                alt="팀원 쿠키 이미지"
-              />
+              <img src="${imageUrl}" class="card-img-top border border-3 border-dark" alt="팀원 쿠키 이미지"/>
               <div class="card-body">
                 <h5 class="card-title" style="text-align: center;">${name}</h5>
                 <div class="h2 pb-1 mb-1 border-bottom" style="text-align: center; font-size: medium;"></div>
@@ -147,6 +142,7 @@
               <button type="button" class="btn btn-primary">자세히 보기</button>
             </div>
           </div>`;
+
               $("#member-card").append(teamListHtml);
             });
           });
@@ -176,7 +172,7 @@
         <button type="button" class="btn btn-primary btn-lg">쉐프로 참여하기</button> 
     </div>
      
-    <!-- <div class="mypostbox">
+     <!-- <div class="mypostbox">
         <h4>쉐프님 어서오세요!</h4>
 
         <div class="form-floating mb-3">
@@ -233,5 +229,4 @@
           </div>
         </div> -->
       </div>
-
 </html>
