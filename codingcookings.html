@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코딩쿠킹스 팀원 소개 페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <style>
+      .team-cards {
+        width: 600px;
+        margin: 20px auto 20px auto;
+      }
+
+      .card {
+        border-radius: 15px;
+      }
+      .card > button {
+        margin: 10px;
+      }
+      .card > img {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        height: 200px;
+        padding: 5px;
+      }
+      .card-text {
+        margin: 10px auto 20px auto;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        let teamListHtml = ``;
+        fetch(
+          "https://sprata-team-project-default-rtdb.asia-southeast1.firebasedatabase.app/members.json"
+        )
+          .then((res) => res.json())
+          .then((members) => {
+            let keys = Object.keys(members);
+            console.log(keys);
+            keys.forEach((key) => {
+                console.log(members[key])
+              let name = members[key].name;
+              let once = members[key].once;
+              let imageUrl = members[key].imageUrl;
+              teamListHtml = ` <div class="col">
+            <div class="card h-100 shadow-lg bg-body">
+              <img
+                src="${imageUrl}"
+                class="card-img-top border border-3 border-dark"
+                alt="팀원 쿠키 이미지"
+              />
+              <div class="card-body">
+                <h5 class="card-title" style="text-align: center;">${name}</h5>
+                <div class="h2 pb-1 mb-1 border-bottom" style="text-align: center; font-size: medium;"></div>
+                <p class="card-text">${once}</p>
+              </div>
+              <button type="button" class="btn btn-primary" onclick='window.location.href="./member.html?id=${key}"'>자세히 보기</button>
+            </div>
+          </div>`;
+              $("#member-card").append(teamListHtml);
+            });
+          });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="team-cards">
+      <div id="member-card" class="row row-cols-1 row-cols-md-3 g-4">
+   <!--     <div class="col">
+          <div class="card h-100">
+            <img
+              src="https://movie-phinf.pstatic.net/20210728_221/1627440327667GyoYj_JPEG/movie_image.jpg"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">영화제목</h5>
+              <p class="card-text">⭐⭐⭐</p>
+              <p class="card-text">영화 코멘트</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </body>
+</html>
+              
+            
